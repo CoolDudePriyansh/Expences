@@ -24,6 +24,20 @@ class Database
 			return $res;
 			database::disconnect();
 	}
+
+	public function changepassword($email,$newpass)
+	{		$con=database::connect();
+			$res=mysql_query("update user_tbl set user_password='$newpass' where user_email='$email' ",$con);
+			return $res;
+		
+		}
+	public function checkpassword($email,$password)
+	{		$con=database::connect();
+			$res=mysql_query("select * from user_tbl where user_email='$email' and user_password='$password'",$con);
+			return $res;
+			database::disconnect();
+	}
+
 	public function getquedis()
 	{		$con=database::connect();
 			$res=mysql_query("select e.*,c.*,u.* from expences_tbl as u,category_tbl as c,user_tbl as u where u.u.user_email='$email'",$con);
