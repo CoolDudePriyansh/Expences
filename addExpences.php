@@ -4,19 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php 
-	session_start();
-	if(isset($_SESSION["email"])=="")
-	{
-		header('Location:index.php');
-	}
-	else
-	{
-		$email=$_SESSION["email"];
-	}
-	require 'database.php';
-	$obj=new database();
-?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -53,34 +41,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 
-<script src='js/jquery.dataTables.min.js'></script>
+<!-- <script src='js/jquery.dataTables.min.js'></script>
 <link href="css/jquery.dataTables_themeroller.css" rel="stylesheet">
-<!--//Metis Menu -->
+ --><!--//Metis Menu -->
 </head> 
 <body class="cbp-spmenu-push">
-	<script>
-        $(function () {
-            $('#dataTable').dataTable({
-                "bJQueryUI": true,
-                "sPaginationType": "full_numbers"
-            });
-
-            $('#chk-all').click(function () {
-                if ($(this).is(':checked')) {
-                    $('#responsiveTable').find('.chk-row').each(function () {
-                        $(this).prop('checked', true);
-                        $(this).parent().parent().parent().addClass('selected');
-                    });
-                }
-                else {
-                    $('#responsiveTable').find('.chk-row').each(function () {
-                        $(this).prop('checked', false);
-                        $(this).parent().parent().parent().removeClass('selected');
-                    });
-                }
-            });
-        });
-    </script>
+	
 	<div class="main-content">
 		<!--left-fixed -navigation-->
 		<?php 
@@ -97,37 +63,48 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 		<!-- //header-ends -->
 		<!-- main content start-->
-		<div class="main-page login-page ">
-				<h3 class="title1">Signin Page</h3>
-				<div class="widget-shadow">
-					<div class="login-top">
-						<h4>Welcome back to Novus AdminPanel ! <br> Not a Member? <a href="signup.php">  Sign Up »</a> </h4>
+		
+
+	<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1"><center>Add Your Daily Expences here</center></h3>
+				<div class="sign-up-row widget-shadow">
+
+					<form action="#" method="post" enctype="multipart/form-data">
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>Expences Name* :</h4>
+						</div>
+						<div class="sign-up2">
+							
+								<input type="text" name="txtname" placeholder="Type Your Name" required>
+							
+						</div>
+						<div class="clearfix"> </div>
 					</div>
-					<div class="login-body">
-						<form action="#" method="post">
-							<input type="text" class="user" name="txtemail" placeholder="Enter your Email ID" required>
-							<input type="password" name="txtpassword" class="lock" placeholder="Enter Your Password">
-							<input type="submit" name="btnlogin" value="Sign In">
-							<div class="forgot-grid">
-								<div class="forgot">
-									<a href="forgot.php">forgot password?</a>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</form>
+					
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>Amount* :</h4>
+						</div>
+						<div class="sign-up2">
+							
+								<input type="text"  name="txtemail" placeholder="Type Your Email ID"  required>
+							
+						</div>
+						<div class="clearfix"> </div>
+					</div>					
+					
+					<div class="sub_home">
+						
+						<input type="submit" value="Submit" name="btnsignup">
+						
+						<div class="clearfix"> </div>
 					</div>
-				</div>
-				
-				<div class="login-page-bottom">
-					<h5> - OR -</h5>
-					<div class="social-btn"><a href="#"><i class="fa fa-facebook"></i><i>Sign In with Facebook</i></a></div>
-					<div class="social-btn sb-two"><a href="#"><i class="fa fa-twitter"></i><i>Sign In with Twitter</i></a></div>
+				</form>
 				</div>
 			</div>
-
-
-		<!-- Main End -->
-		
+		</div>	
 
 		<!--footer-->
 

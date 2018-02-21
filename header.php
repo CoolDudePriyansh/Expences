@@ -1,3 +1,16 @@
+<?php 
+	session_start();
+	if(isset($_SESSION["email"])=="")
+	{
+		header('Location:index.php');
+	}
+	else
+	{
+		$email=$_SESSION["email"];
+	}
+	require 'database.php';
+	$obj=new database();
+?>
 		<div class="sticky-header header-section ">
 			<div class="header-left">
 				<!--toggle button start-->
