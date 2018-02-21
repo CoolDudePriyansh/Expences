@@ -49,6 +49,13 @@ class Database
 			return $res;
 			database::disconnect();
 	}
+	public function addExpences($name,$cat,$email,$amount,$day,$month)
+	{	
+			$con=database::connect();
+			$res=mysql_query("insert into expences_tbl values (NULL,'$name','$cat','$email','$amount','$day','$month')",$con);
+			return $res;
+			database::disconnect();
+	}
 	public function addque($que_title,$que_des,$que_img,$que_date,$email_id,$sub_id,$que_cnt,$que_flag,$que_like)
 	{		$con=database::connect();
 			$res=mysql_query("insert into que_tbl values(Null,'$que_title','$que_des','$que_img','$que_date','$email_id','$sub_id','$que_cnt','$que_flag','$que_like')",$con);
@@ -63,9 +70,9 @@ class Database
 	}
 	
 	
-	public function getlike($que_id)
+	public function getAllCategory($que_id)
 	{		$con=database::connect();
-			$res=mysql_query("select * from que_tbl where pk_que_id='$que_id' ",$con);
+			$res=mysql_query("select * from cat_tbl",$con);
 			return $res;
 			database::disconnect();
 	}
@@ -89,18 +96,14 @@ class Database
 	}
 
 	public function reject($que_id)
-	{		$con=database::connect();
+	{		
+			$con=database::connect();
 			$res=mysql_query("update que_tbl set que_flag='2' where pk_que_id='$que_id' ",$con);
 			return $res;
 			database::disconnect();
 	}
 
-	public function getanswerinsert($que_id,$desc,$email,$date)
-	{		$con=database::connect();
-			$res=mysql_query("insert into ans_tbl values(NULL,'$desc','$email','$que_id','$date',NULL)",$con);
-			return $res;
-			database::disconnect();
-	}
+	
 	public function disquebyid($id)
 	{
 		$con=database::connect();

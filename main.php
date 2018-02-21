@@ -4,7 +4,7 @@
 					<div class="col-md-4 widget">
 						<div class="stats-left ">
 							<h5>Today</h5>
-							<h4>Sales</h4>
+							<h4>Expences</h4>
 						</div>
 						<div class="stats-right">
 							<label> 45</label>
@@ -13,8 +13,8 @@
 					</div>
 					<div class="col-md-4 widget states-mdl">
 						<div class="stats-left">
-							<h5>Today</h5>
-							<h4>Visitors</h4>
+							<h5>This Month</h5>
+							<h4>Expences</h4>
 						</div>
 						<div class="stats-right">
 							<label> 80</label>
@@ -23,8 +23,8 @@
 					</div>
 					<div class="col-md-4 widget states-last">
 						<div class="stats-left">
-							<h5>Today</h5>
-							<h4>Orders</h4>
+							<h5>Total</h5>
+							<h4>Expences</h4>
 						</div>
 						<div class="stats-right">
 							<label>51</label>
