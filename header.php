@@ -18,9 +18,9 @@
 				<!--toggle button end-->
 				<!--logo -->
 				<div class="logo">
-					<a href="index.php">
-						<h1>NOVUS</h1>
-						<span>AdminPanel</span>
+					<a href="home.php">
+						<h1>Expences</h1>
+						<span>Trackers &nbsp;&nbsp;</span>
 					</a>
 				</div>
 				<!--//logo-->
@@ -64,6 +64,7 @@
 							<ul class="dropdown-menu drp-mnu">
 								<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
 								<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
+								<li> <a href="changepassword.php"><i class="fa fa-user"></i> Change Password</a> </li> 
 								<li> <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>
 						</li>
