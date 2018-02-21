@@ -62,6 +62,12 @@ if(isset($_POST["btnlogin"]))
 	if($cnt==1)
 	{
 		$_SESSION["email"]=$email;
+		$res=$obj->getid($email);
+		while($row=mysql_fetch_assoc($res))
+		{
+			$user_id=$row["user_id"];
+		}
+		$_SESSION["user_id"]=$user_id;
 		header('Location:home.php');
 	}
 	else

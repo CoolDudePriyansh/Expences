@@ -29,8 +29,17 @@ class Database
 	{		$con=database::connect();
 			$res=mysql_query("update user_tbl set user_password='$newpass' where user_email='$email' ",$con);
 			return $res;
-		
+			database::disconnect();
 		}
+
+		public function getid($email)
+	{		$con=database::connect();
+			$res=mysql_query("select * from user_tbl where user_email='$email'",$con);
+			return $res;
+			database::disconnect();
+		}
+
+
 	public function checkpassword($email,$password)
 	{		$con=database::connect();
 			$res=mysql_query("select * from user_tbl where user_email='$email' and user_password='$password'",$con);

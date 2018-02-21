@@ -45,28 +45,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <link href="css/jquery.dataTables_themeroller.css" rel="stylesheet">
  --><!--//Metis Menu -->
 </head> 
-<?php 
-if(isset($_POST["btnAddExpences"]))
-{
-	$name=$_POST["txtname"];
-	$amount=$_POST["txtamount"];
-	$cat=$_POST["cat"];
-	$day=$_POST["day"];
-	$month=$_POST["month"];
-	$user_id=4;
-	
-	$res=$obj->addExpences($name,$cat,$user_id,$amount,$day,$month);
-	if($res==1)
-	{
-		header('Location:totalExpences.php');
-	}
-	else
-	{
-		echo"something went wrong";
-	}
-			
-}
-?>
+
 
 <body class="cbp-spmenu-push">
 	
@@ -87,7 +66,28 @@ if(isset($_POST["btnAddExpences"]))
 		<!-- //header-ends -->
 		<!-- main content start-->
 		
-
+<?php 
+if(isset($_POST["btnAddExpences"]))
+{
+	$name=$_POST["txtname"];
+	$amount=$_POST["txtamount"];
+	$cat=$_POST["cat"];
+	$day=$_POST["day"];
+	$month=$_POST["month"];
+	$user_id=$_SESSION["user_id"];
+	
+	$res=$obj->addExpences($name,$cat,$user_id,$amount,$day,$month);
+	if($res==1)
+	{
+		header('Location:totalExpences.php');
+	}
+	else
+	{
+		echo"something went wrong";
+	}
+			
+}
+?>
 	<div id="page-wrapper">
 			<div class="main-page">
 				<h3 class="title1"><center>Add Your Daily Expences here</center></h3>
