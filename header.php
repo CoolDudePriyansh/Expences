@@ -11,6 +11,20 @@
 	require 'database.php';
 	$obj=new database();
 ?>
+									<?php 
+									
+										$res1=$obj->getUserByEmail($email);
+										$cnt=mysql_num_rows($res1);
+
+										if($cnt==1)
+										{
+											while($row=mysql_fetch_assoc($res1))
+											{	
+												$photo=$row["user_photo"];
+												$name=$row["user_name"];
+											}
+										}
+									?>
 		<div class="sticky-header header-section ">
 			<div class="header-left">
 				<!--toggle button start-->
@@ -20,40 +34,32 @@
 				<div class="logo">
 					<a href="home.php">
 						<h1>Expences</h1>
-						<span>Trackers &nbsp;&nbsp;</span>
+						<span>Tracker &nbsp;&nbsp;&nbsp;</span>
 					</a>
 				</div>
 				<!--//logo-->
 				<!--search-box-->
-				<div class="search-box">
-					<form class="input">
-						<input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
-						<label class="input__label" for="input-31">
-							<svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
-								<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
-							</svg>
-						</label>
-					</form>
-				</div><!--//end-search-box-->
-				<div class="clearfix"> </div>
+						<div class="clearfix"> </div>
 			</div>
 			<div class="header-right">
 				<div class="profile_details_left">
 				<!--notifications of menu start -->
-				
-				<?php 
-					include('notification.php');
-				?>
+					<?php 
+						include('notification.php');
+					?>
 
 				<!--notification menu end -->
 				<div class="profile_details">		
 					<ul>
 						<li class="dropdown profile_details_drop">
+							
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="userphoto/Screenshot (48).png" height=50 width=50 alt="" style="border-radius: 50px"> </span> 
+									<span class="prfil-img">
+										<img height=50 width=50 alt="" style="border-radius: 50px;" src="<?php echo $photo;?>"> 
+									</span> 
 									<div class="user-name">
-										<p>Priyansh</p>
+										<p><?php echo $name;?></p>
 										<span>Administrator</span>
 									</div>
 									<i class="fa fa-angle-down lnr"></i>
@@ -62,8 +68,6 @@
 								</div>	
 							</a>
 							<ul class="dropdown-menu drp-mnu">
-								<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
-								<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
 								<li> <a href="changepassword.php"><i class="fa fa-user"></i> Change Password</a> </li> 
 								<li> <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>

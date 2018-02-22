@@ -126,7 +126,7 @@ if(isset($_POST["btnAddExpences"]))
 								<select name="cat" class="form-control">
 									<?php
 									$obj=new database();
-									$res=$obj->getAllCategory();
+									$res=$obj->getAllCat();
 									while($row=mysql_fetch_array($res,MYSQL_ASSOC))
 									{
 										echo '<option value="'.$row["cat_id"].'">'.$row["cat_name"].'</option>';
@@ -254,4 +254,4 @@ if(isset($_POST["btnAddExpences"]))
 
 
 
-</html>
+</html>	

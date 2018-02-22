@@ -1,4 +1,119 @@
-<div id="page-wrapper">
+<?php 	
+	$user_id=$_SESSION["user_id"];
+	$date=(int)date("d");								
+	$res=$obj->getTodayExpences($user_id,$date);
+	$cnt=mysql_num_rows($res);
+	$sum=0;
+
+	if($cnt>=1)
+	{
+		while($row=mysql_fetch_assoc($res))
+		{	
+			$sum=$sum+$row["expences_amnt"];
+		}							
+	}	
+?>
+<?php 									
+	//$user_id=$_SESSION["user_id"];
+	$month=date("F");								
+	$res=$obj->getThisMonthExpences($user_id,$month);
+	$cnt=mysql_num_rows($res);
+	$tot=0;
+
+	if($cnt>=1)
+	{
+		while($row=mysql_fetch_assoc($res))
+		{	
+			$tot=$tot+$row["expences_amnt"];
+		}							
+	}	
+?>
+<?php 									
+	//$user_id=$_SESSION["user_id"];
+	$res=$obj->getTotalExpences($user_id);
+	$cnt=mysql_num_rows($res);
+	$final=0;
+
+	if($cnt>=1)
+	{
+		while($row=mysql_fetch_assoc($res))
+		{	
+			$final=$final+$row["expences_amnt"];
+		}							
+	}	
+?>
+<?php 									
+	//$user_id=$_SESSION["user_id"];
+	$res=$obj->getExpenceByMonth($user_id);
+	$cnt=mysql_num_rows($res);
+	$no1=0;$no2=0;$no3=0;$no4=0;$no5=0;$no6=0;
+	$no7=0;$no8=0;$no9=0;$no10=0;$no11=0;$no12=0; 
+
+	if($cnt>=1)
+	{
+		while($row=mysql_fetch_assoc($res))
+		{	
+			$month=$row["month"];
+			if($month=="January")
+				$no1=$no1+$row["expences_amnt"];
+			if($month=="February")
+				$no2=$no2+$row["expences_amnt"];
+			if($month=="March")
+				$no3=$no3+$row["expences_amnt"];
+			if($month=="April")
+				$no4=$no4+$row["expences_amnt"];
+			if($month=="May")
+				$no5=$no5+$row["expences_amnt"];
+			if($month=="June")
+				$no6=$no6+$row["expences_amnt"];
+			if($month=="July")
+				$no7=$no7+$row["expences_amnt"];
+			if($month=="August")
+				$no8=$no8+$row["expences_amnt"];
+			if($month=="September")
+				$no9=$no9+$row["expences_amnt"];
+			if($month=="October")
+				$no10=$no10+$row["expences_amnt"];
+			if($month=="November")
+				$no11=$no11+$row["expences_amnt"];
+			if($month=="December")
+				$no12=$no12+$row["expences_amnt"];
+		}							
+	}	
+?>
+<?php 									
+	//$user_id=$_SESSION["user_id"];
+	$res=$obj->getCategoryByExpence($user_id);
+	$cnt=mysql_num_rows($res);
+	$cat1=0;$cat2=0;$cat3=0;$cat4=0;$cat5=0;$cat6=0;$cat7=0;$cat8=0; 
+
+	if($cnt>=1)
+	{
+		while($row=mysql_fetch_assoc($res))
+		{	
+			$cat=$row["cat_name"];
+			if($cat=="Petrol")
+				$cat1=$cat1+$row["expences_amnt"];
+			else if($cat=="Food")
+				$cat2=$cat2+$row["expences_amnt"];
+			else if($cat=="Bills")
+				$cat3=$cat3+$row["expences_amnt"];
+			else if($cat=="EMI")
+				$cat4=$cat4+$row["expences_amnt"];
+			else if($cat=="Entertaiment")
+				$cat5=$cat5+$row["expences_amnt"];
+			else if($cat=="Shopping")
+				$cat6=$cat6+$row["expences_amnt"];
+			else if($cat=="Travel")
+				$cat7=$cat7+$row["expences_amnt"];
+			else if($cat=="Other")
+				$cat8=$cat8+$row["expences_amnt"];
+
+		}							
+	}	
+?>
+
+		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="row-one">
 					<div class="col-md-4 widget">
@@ -7,7 +122,7 @@
 							<h4>Expences</h4>
 						</div>
 						<div class="stats-right">
-							<label> 45</label>
+							<label> <?php echo $sum; ?></label>
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
@@ -17,7 +132,7 @@
 							<h4>Expences</h4>
 						</div>
 						<div class="stats-right">
-							<label> 80</label>
+							<label><?php echo $tot;?></label>
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
@@ -27,7 +142,7 @@
 							<h4>Expences</h4>
 						</div>
 						<div class="stats-right">
-							<label>51</label>
+							<label><?php echo $final;?></label>
 						</div>
 						<div class="clearfix"> </div>	
 					</div>
@@ -35,81 +150,88 @@
 				</div>
 				<div class="charts">
 					<div class="col-md-4 charts-grids widget">
-						<h4 class="title">Bar Chart Example</h4>
-						<canvas id="bar" height="300" width="400"> </canvas>
+						<h4 class="title">First Six Month Expences</h4>
+						<canvas id="bar" height="400" width="400"> </canvas>
 					</div>
+
 					<div class="col-md-4 charts-grids widget states-mdl">
-						<h4 class="title">Line Chart Example</h4>
-						<canvas id="line" height="300" width="400"> </canvas>
+						<h4 class="title">Last Six Month Expences</h4>
+						<canvas id="line" height="400" width="400"> </canvas>
 					</div>
+
 					<div class="col-md-4 charts-grids widget">
-						<h4 class="title">Pie Chart Example</h4>
-						<canvas id="pie" height="300" width="400"> </canvas>
+						<h4 class="title">Categorywise Expences</h4>
+						<canvas id="pie" height="400" width="400"> </canvas>
 					</div>
+
 					<div class="clearfix"> </div>
 							 <script>
 								var barChartData = {
-									labels : ["Jan","Feb","March","April","May","June","July"],
+									labels : ["Jan","Feb","Mar","April","May","June"],
 									datasets : [
 										{
 											fillColor : "rgba(233, 78, 2, 0.9)",
 											strokeColor : "rgba(233, 78, 2, 0.9)",
 											highlightFill: "#e94e02",
 											highlightStroke: "#e94e02",
-											data : [75,59,90,81,56,55,40]
-										},
-										{
-											fillColor : "rgba(79, 82, 186, 0.9)",
-											strokeColor : "rgba(79, 82, 186, 0.9)",
-											highlightFill: "#4F52BA",
-											highlightStroke: "#4F52BA",
-											data : [40,70,55,20,45,70,60]
-										}
-									]
+											data : [<?php echo $no1;?>,<?php echo $no2;?>,<?php echo $no3;?>,<?php echo $no4;?>,<?php echo $no5;?>,<?php echo $no6;?>]
+										}	
+										]
 									
 								};
 								var lineChartData = {
-									labels : ["Jan","Feb","March","April","May","June","July"],
+									labels : ["July","Aug","Sep","Oct","Nov","Dec"],
 									datasets : [
 										{
 											fillColor : "rgba(242, 179, 63, 1)",
 											strokeColor : "#F2B33F",
 											pointColor : "rgba(242, 179, 63, 1)",
 											pointStrokeColor : "#fff",
-											data : [70,60,72,61,75,59,80]
-
-										},
-										{
-											fillColor : "rgba(97, 100, 193, 1)",
-											strokeColor : "#6164C1",
-											pointColor : "rgba(97, 100, 193,1)",
-											pointStrokeColor : "#9358ac",
-											data : [50,65,51,67,52,64,50]
-
+											data : [<?php echo $no7;?>,<?php echo $no8;?>,<?php echo $no9;?>,<?php echo $no10;?>,<?php echo $no11;?>,<?php echo $no12;?>]
 										}
 									]
 									
 								};
 								var pieData = [
 										{
-											value: 100,
+											value: <?php echo $cat1;?>,
 											color:"rgba(233, 78, 2, 1)",
-											label: "Product 1"
+											label: "Petrol"
 										},
 										{
-											value : 100,
+											value : <?php echo $cat2;?>,
 											color : "rgba(242, 179, 63, 1)",
-											label: "Product 2"
+											label: "Food"
 										},
 										{
-											value : 60,
+											value : <?php echo $cat3;?>,
 											color : "rgba(88, 88, 88,1)",
-											label: "Product 3"
+											label: "Bills"
 										},
 										{
-											value : 100,
+											value : <?php echo $cat4;?>,
 											color : "rgba(79, 82, 186, 1)",
-											label: "Product 4"
+											label: "EMI"
+										},
+										{
+											value : <?php echo $cat5;?>,
+											color : "rgba(233, 78, 2, 1)",
+											label: "Entertaiment"
+										},
+										{
+											value : <?php echo $cat6;?>,
+											color : "rgba(242, 179, 63, 1)",
+											label: "Shopping"
+										},
+										{
+											value : <?php echo $cat7;?>,
+											color : "rgba(88, 88, 88,1)",
+											label: "Travel"
+										},
+										{
+											value : <?php echo $cat8;?>,
+											color : "rgba(79, 82, 186, 1)",
+											label: "Other"
 										}
 										
 									];
@@ -121,226 +243,7 @@
 							</script>
 							
 				</div>
-				<div class="row">
-					<div class="col-md-4 stats-info widget">
-						<div class="stats-title">
-							<h4 class="title">Browser Stats</h4>
-						</div>
-						<div class="stats-body">
-							<ul class="list-unstyled">
-								<li>GoogleChrome <span class="pull-right">85%</span>  
-									<div class="progress progress-striped active progress-right">
-										<div class="bar green" style="width:85%;"></div> 
-									</div>
-								</li>
-								<li>Firefox <span class="pull-right">35%</span>  
-									<div class="progress progress-striped active progress-right">
-										<div class="bar yellow" style="width:35%;"></div>
-									</div>
-								</li>
-								<li>Internet Explorer <span class="pull-right">78%</span>  
-									<div class="progress progress-striped active progress-right">
-										<div class="bar red" style="width:78%;"></div>
-									</div>
-								</li>
-								<li>Safari <span class="pull-right">50%</span>  
-									<div class="progress progress-striped active progress-right">
-										<div class="bar blue" style="width:50%;"></div>
-									</div>
-								</li>
-								<li>Opera <span class="pull-right">80%</span>  
-									<div class="progress progress-striped active progress-right">
-										<div class="bar light-blue" style="width:80%;"></div>
-									</div>
-								</li>
-								<li class="last">Others <span class="pull-right">60%</span>  
-									<div class="progress progress-striped active progress-right">
-										<div class="bar orange" style="width:60%;"></div>
-									</div>
-								</li> 
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-8 stats-info stats-last widget-shadow">
-						<table class="table stats-table ">
-							<thead>
-								<tr>
-									<th>S.NO</th>
-									<th>PRODUCT</th>
-									<th>STATUS</th>
-									<th>PROGRESS</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Lorem ipsum</td>
-									<td><span class="label label-success">In progress</span></td>
-									<td><h5>85% <i class="fa fa-level-up"></i></h5></td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Aliquam</td>
-									<td><span class="label label-warning">New</span></td>
-									<td><h5>35% <i class="fa fa-level-up"></i></h5></td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Lorem ipsum</td>
-									<td><span class="label label-danger">Overdue</span></td>
-									<td><h5  class="down">40% <i class="fa fa-level-down"></i></h5></td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>Aliquam</td>
-									<td><span class="label label-info">Out of stock</span></td>
-									<td><h5>100% <i class="fa fa-level-up"></i></h5></td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>Lorem ipsum</td>
-									<td><span class="label label-success">In progress</span></td>
-									<td><h5 class="down">10% <i class="fa fa-level-down"></i></h5></td>
-								</tr>
-								<tr>
-									<th scope="row">6</th>
-									<td>Aliquam</td>
-									<td><span class="label label-warning">New</span></td>
-									<td><h5>38% <i class="fa fa-level-up"></i></h5></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="row">
-					<div class="col-md-8 map widget-shadow">
-						<h4 class="title">Visitors Map </h4>
-						<div class="map_container"><div id="vmap" style="width: 100%; height: 354px;"></div></div>
-						<!--map js-->
-						<link href="css/jqvmap.css" rel='stylesheet' type='text/css' />
-						<script src="js/jquery.vmap.js"></script>
-						<script src="js/jquery.vmap.sampledata.js" type="text/javascript"></script>
-						<script src="js/jquery.vmap.world.js" type="text/javascript"></script>
-						<script type="text/javascript">
-							jQuery(document).ready(function() {
-								jQuery('#vmap').vectorMap({
-									map: 'world_en',
-									backgroundColor: '#fff',
-									color: '#696565',
-									hoverOpacity: 0.8,
-									selectedColor: '#696565',
-									enableZoom: true,
-									showTooltip: true,
-									values: sample_data,
-									scaleColors: ['#585858', '#696565'],
-									normalizeFunction: 'polynomial'
-								});
-							});
-						</script>
-						<!-- //map js -->
-					</div>
-					<div class="col-md-4 social-media widget-shadow">
-						<div class="wid-social twitter">
-							<div class="social-icon">
-								<i class="fa fa-twitter text-light icon-xlg "></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">3.1 K</h3>
-								<h4 class="counttype text-light">Tweets</h4>
-							</div>
-						</div>
-						<div class="wid-social google-plus">
-							<div class="social-icon">
-								<i class="fa fa-google-plus text-light icon-xlg "></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">523</h3>
-								<h4 class="counttype text-light">Circles</h4>
-							</div>
-						</div>
-						<div class="wid-social facebook">
-							<div class="social-icon">
-								<i class="fa fa-facebook text-light icon-xlg "></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">1.06K</h3>
-								<h4 class="counttype text-light">Likes</h4>
-							</div>
-						</div>
-						<div class="wid-social dribbble">
-							<div class="social-icon">
-								<i class="fa fa-dribbble text-light icon-xlg "></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">1.6 K</h3>
-								<h4 class="counttype text-light">Subscribers</h4>
-							</div>
-						</div>
-						<div class="wid-social vimeo">
-							<div class="social-icon">
-								<i class="fa fa-vimeo-square text-light icon-xlg"> </i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">2.1 m</h3>
-								<h4 class="counttype text-light">Contacts</h4>
-							</div>
-						</div>
-						<div class="wid-social xing">
-							<div class="social-icon">
-								<i class="fa fa-xing text-light icon-xlg "></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">2525</h3>
-								<h4 class="counttype text-light">Connections</h4>
-							</div>
-						</div>
-						<div class="wid-social flickr">
-							<div class="social-icon">
-								<i class="fa fa-android text-light icon-xlg"></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">1221</h3>
-								<h4 class="counttype text-light">Media</h4>
-							</div>
-						</div>
-						<div class="wid-social yahoo">
-							<div class="social-icon">
-								<i class="fa fa-yahoo text-light icon-xlg"> Y!</i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">2525</h3>
-								<h4 class="counttype text-light">Connections</h4>
-							</div>
-						</div>
-						<div class="wid-social rss">
-							<div class="social-icon">
-								<i class="fa fa-rss text-light icon-xlg"></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">1523</h3>
-								<h4 class="counttype text-light">Subscribers</h4>
-							</div>
-						</div>
-						<div class="wid-social youtube">
-							<div class="social-icon">
-								<i class="fa fa-youtube text-light icon-xlg"></i>
-							</div>
-							<div class="social-info">
-								<h3 class="number_counter bold count text-light start_timer counted">1523</h3>
-								<h4 class="counttype text-light">Subscribers</h4>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="row calender widget-shadow">
-					<h4 class="title">Calender</h4>
-					<div class="cal1">
-						
-					</div>
-				</div>
+				
 				<div class="clearfix"> </div>
 			</div>
 		</div>
