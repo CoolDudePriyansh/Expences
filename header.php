@@ -33,8 +33,8 @@
 				<!--logo -->
 				<div class="logo">
 					<a href="home.php">
-						<h1>Expences</h1>
-						<span>Tracker &nbsp;&nbsp;&nbsp;</span>
+						<h1>Expence</h1>
+						<span>&nbsp;&nbsp;Tracker&nbsp;&nbsp;</span>
 					</a>
 				</div>
 				<!--//logo-->
