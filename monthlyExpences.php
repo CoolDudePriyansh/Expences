@@ -97,6 +97,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<table id ="dataTable" class="table table-hover" > 
 							<thead> 
 								<tr> 
+									<th>Date</th>
 									<th>Expences Name</th> 
 									<th>Amount</th> 
 									<th>Category</th> 
@@ -112,6 +113,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									while($row=mysql_fetch_assoc($res))
 									{
 										echo '<tr>';
+										echo '<td><font size="3" color="black">'.$row["day"].'-'.$row["month"].   '</font>';
 										echo '<td><font size="3" color="black">'.$row["expences_name"].'</font>';
 										echo '<td><font size="3" color="black">'.$row["expences_amnt"].'</font>';
 										echo '<td><font size="3" color="black">'.$row["cat_name"].'</font>';

@@ -33,7 +33,7 @@
 				<!--logo -->
 				<div class="logo">
 					<a href="home.php">
-						<h1>Expence</h1>
+						<h1>Expense</h1>
 						<span>&nbsp;&nbsp;Tracker&nbsp;&nbsp;</span>
 					</a>
 				</div>

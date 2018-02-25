@@ -74,8 +74,15 @@ if(isset($_POST["btnAddExpences"]))
 	$cat=$_POST["cat"];
 	$day=$_POST["day"];
 	$month=$_POST["month"];
-	$user_id=$_SESSION["user_id"];
-	
+	$_SESSION["email"]=$email;
+	$res=$obj->getid($email);
+	while($row=mysql_fetch_assoc($res))
+	{	
+		$user_id=$row["user_id"];
+	}
+	$_SESSION["user_id"]=$user_id;
+		
+
 	$res=$obj->addExpences($name,$cat,$user_id,$amount,$day,$month);
 	if($res==1)
 	{
@@ -190,7 +197,7 @@ if(isset($_POST["btnAddExpences"]))
 									<option value="January">January</option>
 									<option value="February">February</option>
 									<option value="March">March</option>
-									<option value="April">4April</option>
+									<option value="April">April</option>
 									<option value="May">May</option>
 									<option value="June">June</option>
 									<option value="July">July</option>

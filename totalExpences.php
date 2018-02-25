@@ -5,7 +5,6 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -96,7 +95,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
 						<table id ="dataTable" class="table table-hover" > 
 							<thead> 
-								<tr> 
+								<tr>
+									<th>Date</th> 
 									<th>Expences Name</th> 
 									<th>Amount</th> 
 									<th>Category</th> 
@@ -111,6 +111,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									while($row=mysql_fetch_assoc($res))
 									{
 										echo '<tr>';
+										echo '<td><font size="3" color="black">'.$row["day"].'-'.$row["month"].   '</font>';				
 										echo '<td><font size="3" color="black">'.$row["expences_name"].'</font>';
 										echo '<td><font size="3" color="black">'.$row["expences_amnt"].'</font>';
 										echo '<td><font size="3" color="black">'.$row["cat_name"].'</font>';

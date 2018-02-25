@@ -103,7 +103,6 @@ if(isset($_POST["btnlogin"]))
 				<div class="login-page-bottom">
 					<h5> - OR -</h5>
 					<div class="social-btn"><a href="#"><i class="fa fa-facebook"></i><i>Sign In with Facebook</i></a></div>
-					<div class="social-btn sb-two"><a href="#"><i class="fa fa-twitter"></i><i>Sign In with Twitter</i></a></div>
 				</div>
 			</div>
 		</div>

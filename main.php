@@ -98,7 +98,7 @@
 				$cat2=$cat2+$row["expences_amnt"];
 			else if($cat=="Bills")
 				$cat3=$cat3+$row["expences_amnt"];
-			else if($cat=="EMI")
+			else if($cat=="Grocery")
 				$cat4=$cat4+$row["expences_amnt"];
 			else if($cat=="Entertaiment")
 				$cat5=$cat5+$row["expences_amnt"];
@@ -106,7 +106,7 @@
 				$cat6=$cat6+$row["expences_amnt"];
 			else if($cat=="Travel")
 				$cat7=$cat7+$row["expences_amnt"];
-			else if($cat=="Other")
+			else if($cat=="Miscellaneous")
 				$cat8=$cat8+$row["expences_amnt"];
 
 		}							
@@ -211,7 +211,7 @@
 										{
 											value : <?php echo $cat4;?>,
 											color : "rgba(79, 82, 186, 1)",
-											label: "EMI"
+											label: "Grocery"
 										},
 										{
 											value : <?php echo $cat5;?>,
@@ -231,7 +231,7 @@
 										{
 											value : <?php echo $cat8;?>,
 											color : "rgba(79, 82, 186, 1)",
-											label: "Other"
+											label: "Miscellaneous"
 										}
 										
 									];
